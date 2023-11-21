@@ -1,12 +1,94 @@
-<div>
-    <input type="date" placeholder="Date"><br>
+<center><div style="border-radius: 100px;">
+  <h1>HOMEWORK UPLOPAD</h1><BR><BR>
+    <h2>Physics</h2><BR><BR>
+    <input type="date" placeholder="Date" id="date" style="width: 200px; height: 20px;"><br><br>
     <select name="Book" id="book">
         <option value="46 Years">46 Years</option>
         <option value="ICE">ICE</option>
-        <option value="HC Verma">N Avasthi</option>
-        <option value="DC Panday"></option>
+        <option value="DC Pandey">DC Pandey</option>
+        <option value="HC verma">HC Verma</option>
         <option value="etc">Other</option>
         
-      </select><br>
-      <input type="text" placeholder="Question no">
-</div>
+      </select><br><br>
+      <input type="text" id="qno"><br><br>
+      <button id="send">Submit</button>
+</div></center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCQMK9CyPycHQfctptDuYxOAc3v_hE7ar0",
+    authDomain: "chat-de3c9.firebaseapp.com",
+    databaseURL: "https://chat-de3c9-default-rtdb.firebaseio.com",
+    projectId: "chat-de3c9",
+    storageBucket: "chat-de3c9.appspot.com",
+    messagingSenderId: "301484866607",
+    appId: "1:301484866607:web:2bf9fb080fd19dc7cb9ada",
+    measurementId: "G-EJV17WW960"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+ 
+
+  import{getDatabase, ref,set,child,update,remove}
+from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+
+const db = getDatabase();
+//adding variable//
+var date = document.getElementById("date");
+var book = document.getElementById("book");
+var question = document.getElementById("qno");
+var send = document.getElementById("send");
+//write//
+function InsertData(){
+  set(ref(db,"Physics/"+date.value),{
+    Date:date.value,
+    Book:book.value,
+    Question:question.value,
+
+  })
+  .then(()=>{
+    alert("Data Stored Successfully");
+  })
+  .catch((error)=>{
+    alert("Error"+error);
+  });
+}
+
+
+  send.addEventListener('click', InsertData);
+</script>
