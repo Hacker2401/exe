@@ -8,7 +8,8 @@
         <option value="etc">Other</option>
         
       </select><br><br>
-      <input type="text" id="qno"><br><br>
+      <input type="text" id="pgno" placeholder="Page No"><br><br>
+      <input type="text" id="qno" placeholder="Question NO"><br><br>
       <button id="send">Submit</button>
 </div></center>
 
@@ -71,12 +72,14 @@ var date = document.getElementById("date");
 var book = document.getElementById("book");
 var question = document.getElementById("qno");
 var send = document.getElementById("send");
+var pgno = document.getElementById("pgno");
 //write//
 function InsertData(){
   set(ref(db,"Chemistry/"+date.value),{
     Date:date.value,
     Book:book.value,
     Question:question.value,
+    PageNo:pgno.value,
 
   })
   .then(()=>{
